@@ -4,7 +4,6 @@ import router from './router';
 import store from './store';
 import './registerServiceWorker';
 import VuePageTransition from 'vue-page-transition';
-import 'vue-material-design-icons/styles.css';
 
 import '@/scss/index.scss';
 Vue.use(VuePageTransition);
