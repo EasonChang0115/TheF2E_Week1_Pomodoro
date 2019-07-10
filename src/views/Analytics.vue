@@ -10,10 +10,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.about {
-  h1 {
-    color: $color-yellow;
-  }
-}
-</style>
+<style lang="scss"></style>
