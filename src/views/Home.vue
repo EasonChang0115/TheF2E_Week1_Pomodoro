@@ -1,18 +1,26 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="p__home">
+    <left-todo-panel></left-todo-panel>
+    <right-menu-panel></right-menu-panel>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import LeftTodoPanel from '@/components/home/LeftTodoPanel.vue';
+import RightMenuPanel from '@/components/home/RightMenuPanel.vue';
 
 export default {
-  name: 'home',
   components: {
-    HelloWorld
+    LeftTodoPanel,
+    RightMenuPanel
   }
 };
 </script>
+
+<style lang="scss">
+.p__home {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+</style>
