@@ -1,6 +1,6 @@
 <template>
-  <div class="about">
-    <h1>About page</h1>
+  <div class="p__analytics">
+    <h1>analytics</h1>
   </div>
 </template>
 
