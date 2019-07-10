@@ -1,4 +1,4 @@
-# week1pomodoro
+# week1 pomodoro 蕃茄鐘
 
 ## Project setup
 ```
