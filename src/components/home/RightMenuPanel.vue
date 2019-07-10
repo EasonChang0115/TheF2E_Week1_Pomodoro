@@ -52,8 +52,7 @@ export default {};
     font-size: 1.5rem;
     font-weight: bold;
     color: $second-color;
-    transform: rotate(-90deg);
-    transform-origin: top left;
+    writing-mode: vertical-lr
   }
 }
 </style>
