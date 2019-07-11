@@ -1,12 +1,16 @@
 <template>
-  <div class="todo_input">
+  <div class="todo_input" :class="playMode">
     <input type="text" placeholder="add a new mission...">
     <i class="material-icons">add</i>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
+  computed: {
+    ...mapState(['playing', 'time', 'playMode'])
+  }
 };
 </script>
 
@@ -35,6 +39,14 @@ export default {
     font-size: 24px;
     color: $text-color;
     cursor: pointer;
+  }
+  &.break {
+    input::placeholder {
+      color: $second-text-color;
+    }
+    i {
+      color: $second-text-color;
+    }
   }
 }
 </style>

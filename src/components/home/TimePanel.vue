@@ -1,5 +1,5 @@
 <template>
-  <div class="time_panel">
+  <div class="time_panel" :class="playMode">
     <div class="now_mession_title">
       <check-box></check-box>
       <div class="now_mession">
@@ -13,7 +13,11 @@
 
 <script>
 import CheckBox from '../CheckBox.vue';
+import { mapState } from 'vuex';
 export default {
+  computed: {
+    ...mapState(['playing', 'time', 'playMode'])
+  },
   components: {
     CheckBox
   }
@@ -44,6 +48,9 @@ export default {
     font-size: 11rem;
     font-weight: bold;
     color: $text-color;
+  }
+  &.break .time_reciprocal{
+    color: $second-text-color;
   }
 }
 </style>

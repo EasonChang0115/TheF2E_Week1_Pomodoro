@@ -1,5 +1,5 @@
 <template>
-  <div class="todo_list">
+  <div class="todo_list" :class="playMode">
     <div class="todo-item" v-for="(item, index) in todoList" :key="index">
       <check-box width="24" height="24" size="16" :id="item.id"></check-box>
       <div class="title">{{ item.title }}</div>
@@ -13,6 +13,7 @@
 
 <script>
 import CheckBox from '../CheckBox.vue';
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
@@ -32,6 +33,9 @@ export default {
   },
   components: {
     CheckBox
+  },
+  computed: {
+    ...mapState(['playing', 'time', 'playMode'])
   },
   methods: {
     redirect() {
@@ -73,6 +77,11 @@ export default {
     text-align: right;
     span {
       cursor: pointer;
+    }
+  }
+  &.break {
+    .more {
+      color: $second-text-color;
     }
   }
 }
