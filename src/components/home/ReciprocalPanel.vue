@@ -18,8 +18,8 @@ import { mapState } from 'vuex';
 export default {
   data() {
     return {
-      timer: null,
-      circleProcess: null
+      circleProcess: null,
+      timer: null
     };
   },
   computed: {
@@ -27,10 +27,12 @@ export default {
   },
   mounted() {
     this.circleProcess = this.$refs['circleProcess'];
+    if (this.isStart && this.playing) {
+      this.timmerRecip();
+    }
   },
   destroyed() {
     if (this.timer) window.clearInterval(this.timer);
-    this.$store.commit('togglePlaying', { value: false });
   },
   methods: {
     togglePlaying(value) {

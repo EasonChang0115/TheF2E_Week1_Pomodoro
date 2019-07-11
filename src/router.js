@@ -28,9 +28,6 @@ export default new Router({
           path: 'ringtones',
           name: 'ringtones',
           component: () => import('./views/RingTones.vue')
-        }, {
-          path: '/',
-          redirect: '/todo'
         }
       ]
     }, {

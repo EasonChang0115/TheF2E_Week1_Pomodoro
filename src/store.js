@@ -12,7 +12,12 @@ export default new Vuex.Store({
     modeTime: {
       work: 1500,
       break: 300
-    }
+    },
+    todos: [{
+      id: 1,
+      title: ''
+    }],
+    newTodoID: 0
   },
   mutations: {
     togglePlaying(state, { value }) {

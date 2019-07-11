@@ -8,14 +8,58 @@
         </div>
       </div>
     </div>
+    <div class="mession">
+      <div class="time-block">{{ time | timeformat }}</div>
+      <div class="title">the First thing to do today</div>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 export default {
+  data() {
+    return {
+      timer: null
+    };
+  },
+  mounted() {
+    if (this.isStart && this.playing) {
+      this.timmerRecip();
+    }
+  },
+  destroyed() {
+    if (this.timer) window.clearInterval(this.timer);
+  },
   computed: {
-    ...mapState(['playing', 'playMode', 'playingTime', 'modeTime', 'isStart'])
+    ...mapState(['playing', 'playMode', 'playingTime', 'modeTime', 'isStart']),
+    time() {
+      if (!this.isStart) return this.modeTime[this.playMode];
+      else return this.playingTime;
+    }
+  },
+  methods: {
+    togglePlaying(value) {
+      this.$store.commit('togglePlaying', { value });
+      if (!this.isStart && value === true) {
+        this.$store.commit('toggleStarted', { value: true });
+        this.$store.commit('setPlayingTime', { value: this.modeTime[this.playMode] });
+        this.timmerRecip();
+      } else if (this.isStart && value === true) {
+        this.timmerRecip();
+      } else if (value === false) {
+        window.clearInterval(this.timer);
+      }
+    },
+    timmerRecip() {
+      this.timer = setInterval(() => {
+        this.$store.commit('countDownPlayingTime');
+        if (this.playingTime <= 0) {
+          window.clearInterval(this.timer);
+          this.$store.commit('toggleStarted', { value: false });
+        }
+      }, 1000);
+    }
   }
 };
 </script>
@@ -29,6 +73,24 @@ export default {
   position: absolute;
   bottom: 0;
   transform: translateY(50%);
+  .time-block {
+    font-size: 4rem;
+    font-weight: bold;
+    color: $text-color;
+    text-align: center;
+  }
+  .mession {
+    width: 100%;
+    position: absolute;
+    top: 57px;
+  }
+  .title {
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    color: $primary-color
+  }
   .out-circle {
     width: 116px;
     height: 116px;
@@ -75,6 +137,9 @@ export default {
     }
     .out-circle .inner-circle .play-btn i {
       color: $second-text-color;
+    }
+    .time-block {
+      color: $second-text-color
     }
   }
 }

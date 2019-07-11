@@ -7,7 +7,7 @@
         <div class="dot"></div>
       </div>
     </div>
-    <div class="time_reciprocal">{{ timeFomat }}</div>
+    <div class="time_reciprocal">{{ time | timeformat }}</div>
   </div>
 </template>
 
@@ -17,17 +17,9 @@ import { mapState } from 'vuex';
 export default {
   computed: {
     ...mapState(['isStart', 'modeTime', 'playMode', 'playingTime']),
-    timeFomat() {
-      let time = 0;
-      if (!this.isStart) time = this.modeTime[this.playMode];
-      else time = this.playingTime;
-      let second = time % 60; // 秒數
-      let minute = Math.floor(time / 60) % 60; // 分鐘
-      let hour = Math.floor(Math.floor(time / 60) / 60);
-      if (second.toString().length === 1) second = '0' + second.toString();
-      if (minute.toString().length === 1) minute = '0' + minute.toString();
-      if (hour.toString().length === 1) hour = '0' + hour.toString();
-      return `${minute}:${second}`;
+    time() {
+      if (!this.isStart) return this.modeTime[this.playMode];
+      else return this.playingTime;
     }
   },
   components: {
