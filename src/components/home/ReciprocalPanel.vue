@@ -1,10 +1,13 @@
 <template>
   <div class="reciprocal-panel" :class="playMode">
     <div class="inner-circle" :class="playing ? 'playing' : ''">
+      <svg id="circleSvg" xmlns="http://www.w3.org/2000/svg">
+        <circle ref="circleProcess" cx="50%" cy="50%" r="260" stroke-width="21" :stroke="playMode === 'work' ? '#FF4384' : '#00A7FF'"></circle>
+      </svg>
       <div class="play-btn">
         <i class="material-icons" v-if="playing === false" @click="togglePlaying(true)">play_circle_filled</i>
         <i class="material-icons" v-else @click="togglePlaying(false)">pause_circle_filled</i>
-        <div class="dot"></div>
+        <div class="dot" @click="resetPlaying"></div>
       </div>
     </div>
   </div>
@@ -13,12 +16,52 @@
 <script>
 import { mapState } from 'vuex';
 export default {
+  data() {
+    return {
+      timer: null,
+      circleProcess: null
+    };
+  },
   computed: {
-    ...mapState(['playing', 'time', 'playMode'])
+    ...mapState(['playing', 'playMode', 'playingTime', 'modeTime', 'isStart'])
+  },
+  mounted() {
+    this.circleProcess = this.$refs['circleProcess'];
+  },
+  destroyed() {
+    if (this.timer) window.clearInterval(this.timer);
+    this.$store.commit('togglePlaying', { value: false });
   },
   methods: {
     togglePlaying(value) {
       this.$store.commit('togglePlaying', { value });
+      if (!this.isStart && value === true) {
+        this.$store.commit('toggleStarted', { value: true });
+        this.$store.commit('setPlayingTime', { value: this.modeTime[this.playMode] });
+        this.timmerRecip();
+      } else if (this.isStart && value === true) {
+        this.timmerRecip();
+      } else if (value === false) {
+        window.clearInterval(this.timer);
+      }
+    },
+    resetPlaying() {
+      window.clearInterval(this.timer);
+      this.$store.commit('toggleStarted', { value: false });
+      this.$store.commit('togglePlaying', { value: false });
+      this.$store.commit('setPlayingTime', { value: 0 });
+      this.circleProcess.setAttribute('stroke-dashoffset', '360%');
+    },
+    timmerRecip() {
+      this.timer = setInterval(() => {
+        this.$store.commit('countDownPlayingTime');
+        let percent = this.playingTime / this.modeTime[this.playMode] * 360 + '%';
+        this.circleProcess.setAttribute('stroke-dashoffset', percent);
+        if (this.playingTime <= 0) {
+          window.clearInterval(this.timer);
+          this.$store.commit('toggleStarted', { value: false });
+        }
+      }, 1000);
     }
   }
 };
@@ -36,6 +79,20 @@ export default {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
+  .inner-circle #circleSvg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    width: 540px;
+    height: 540px;
+    stroke-dasharray: 360%;
+    stroke-dashoffset: 360%;
+    fill: none;
+    circle {
+      transition: .4s;
+    }
+  }
   .inner-circle {
     width: 500px;
     height: 500px;

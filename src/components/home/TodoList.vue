@@ -35,7 +35,7 @@ export default {
     CheckBox
   },
   computed: {
-    ...mapState(['playing', 'time', 'playMode'])
+    ...mapState(['playing', 'playMode'])
   },
   methods: {
     redirect() {
