@@ -107,11 +107,17 @@ export default {
       width: 6rem;
       height: 6rem;
       transition: .3s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       i {
-        font-size: 6.5rem;
+        font-size: 6.2rem;
         cursor: pointer;
         transition: .3s;
         user-select: none;
+        &:hover {
+          transform: scale(1.2);
+        }
       }
       .dot {
         width: 14px;
@@ -123,11 +129,9 @@ export default {
         right: 0;
         transform: translateX(100%);
         transition: .3s;
-      }
-    }
-    &:hover {
-      .play-btn {
-        transform: scale(1.2);
+        &:hover {
+          transform: scale(1.3) translateX(100%);
+        }
       }
     }
   }
