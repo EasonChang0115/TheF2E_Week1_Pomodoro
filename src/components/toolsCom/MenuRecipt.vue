@@ -34,7 +34,12 @@ export default {
 <style lang="scss" scoped>
 .menu-recipt {
   height: 100%;
+  min-width: 350px;
   padding: 3rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
   .menu_list {
     display: flex;
     flex-direction: column;
