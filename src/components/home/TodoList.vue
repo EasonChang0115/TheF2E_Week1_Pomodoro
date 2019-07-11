@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     redirect() {
-      this.$router.push({ name: 'todolist' });
+      this.$router.push({ name: 'todo' });
     }
   }
 };
@@ -60,7 +60,7 @@ export default {
       color: $primary-color;
       font-size: 1rem;
       font-weight: bold;
-      text-transform:uppercase;
+      text-transform: uppercase;
     }
     .play-btn {
       margin-left: auto;

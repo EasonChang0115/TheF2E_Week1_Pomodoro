@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    playMode: 'break', // work 工作, break 休息
+    playMode: 'work', // work 工作, break 休息
     isStart: false,
     playing: false,
     playingTime: 0,

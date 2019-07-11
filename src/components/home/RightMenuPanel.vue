@@ -2,13 +2,13 @@
   <div class="p__home__right_menu_panel">
     <div class="menu-bar">
       <div class="icon_list">
-        <router-link to="tools" class="menu_link">
+        <router-link to="/tools/todo" class="menu_link">
           <i class="material-icons">list</i>
         </router-link>
-        <router-link to="tools/analytics" class="menu_link">
+        <router-link to="/tools/analytics" class="menu_link">
           <i class="material-icons">assessment</i>
         </router-link>
-        <router-link to="tools/ringtones" class="menu_link">
+        <router-link to="/tools/ringtones" class="menu_link">
           <i class="material-icons">library_music</i>
         </router-link>
       </div>

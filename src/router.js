@@ -16,9 +16,9 @@ export default new Router({
       component: () => import('./views/Tools.vue'),
       children: [
         {
-          path: '',
-          name: 'todolist',
-          component: () => import('./views/TodoList.vue')
+          path: 'todo',
+          name: 'todo',
+          component: () => import('./views/Todo.vue')
         },
         {
           path: 'analytics',
@@ -28,6 +28,9 @@ export default new Router({
           path: 'ringtones',
           name: 'ringtones',
           component: () => import('./views/RingTones.vue')
+        }, {
+          path: '/',
+          redirect: '/todo'
         }
       ]
     }, {
