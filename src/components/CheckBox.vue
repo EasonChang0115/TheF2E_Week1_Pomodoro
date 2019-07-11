@@ -24,7 +24,7 @@
       },
       size: {
         default: 32
-      } 
+      }
     }
   };
 </script>

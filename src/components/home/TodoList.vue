@@ -27,7 +27,7 @@ export default {
           title: 'the forth thing to do today'
         }
       ]
-    }
+    };
   },
   components: {
     CheckBox
