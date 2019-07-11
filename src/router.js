@@ -11,17 +11,25 @@ export default new Router({
       name: 'home',
       component: () => import('./views/Home.vue')
     }, {
-      path: '/todolist',
-      name: 'todolist',
-      component: () => import('./views/TodoList.vue')
-    }, {
-      path: '/analytics',
-      name: 'analytics',
-      component: () => import('./views/Analytics.vue')
-    }, {
-      path: '/ringtones',
-      name: 'ringtones',
-      component: () => import('./views/RingTones.vue')
+      path: '/tools',
+      name: 'tools',
+      component: () => import('./views/Tools.vue'),
+      children: [
+        {
+          path: '',
+          name: 'todolist',
+          component: () => import('./views/TodoList.vue')
+        },
+        {
+          path: 'analytics',
+          name: 'analytics',
+          component: () => import('./views/Analytics.vue')
+        }, {
+          path: 'ringtones',
+          name: 'ringtones',
+          component: () => import('./views/RingTones.vue')
+        }
+      ]
     }, {
       path: '*',
       redirect: '/'
