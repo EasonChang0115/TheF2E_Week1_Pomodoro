@@ -7,6 +7,7 @@
         <i class="material-icons">play_circle_outline</i>
       </div>
     </div>
+    <div class="more"><span @click="redirect">MORE</span></div>
   </div>
 </template>
 
@@ -31,6 +32,11 @@ export default {
   },
   components: {
     CheckBox
+  },
+  methods: {
+    redirect() {
+      this.$router.push({ name: 'todolist' });
+    }
   }
 };
 </script>
@@ -42,7 +48,9 @@ export default {
     width: 100%;
     height: 2rem;
     display: flex;
-    border-bottom: 1px solid rgba($primary-color, 0.2);
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid rgba($primary-color, 0.2);
     margin-bottom: 0.5rem;
     .title {
       color: $primary-color;
@@ -56,6 +64,15 @@ export default {
       i {
         color: $primary-color;
       }
+    }
+  }
+  .more {
+    color: $text-color;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: right;
+    span {
+      cursor: pointer;
     }
   }
 }

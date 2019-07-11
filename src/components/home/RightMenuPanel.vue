@@ -14,11 +14,17 @@
       </div>
       <div class="menu-title">POMODORO</div>
     </div>
+    <reciprocal-panel></reciprocal-panel>
   </div>
 </template>
 
 <script>
-export default {};
+import ReciprocalPanel from './ReciprocalPanel.vue';
+export default {
+  components: {
+    ReciprocalPanel
+  }
+};
 </script>
 
 <style lang="scss" scoped>

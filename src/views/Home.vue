@@ -14,7 +14,6 @@ export default {
     document.body.style.background = 'linear-gradient(90deg, rgba(255,237,247,1) 29%, rgba(0,49,100,1) 73%)';
   },
   destroyed() {
-    console.log('destroyed');
     document.body.style.background = '';
   },
   components: {
