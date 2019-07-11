@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import TodoInput from './TodoInput.vue';
+import TodoInput from '../TodoInput.vue';
 import TimePanel from './TimePanel.vue';
 import TodoList from './TodoList.vue';
 export default {
