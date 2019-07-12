@@ -1,53 +1,25 @@
 <template>
   <div class="time_panel" :class="playMode">
-    <div class="now_mession_title">
-      <check-box></check-box>
-      <div class="now_mession">
-        <div class="title">{{ nowMession.title }}</div>
-        <div class="dots">
-          <div class="dot" v-for="dot in nowMession.doTimes" :key="dot"></div>
-          <div class="dot active" v-show="playMode === 'work'">
-            <svg id="pie" xmlns="http://www.w3.org/2000/svg">
-              <circle ref="circleProcess2" cx="50%" cy="50%" r="6" stroke-width="12" stroke="#FF4384" fill="#FFEDF7"></circle>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
+    <transition-group name="flip" class='mession-block'>
+      <now-mession-bar :nowTodoID="$store.state.nowTodoID" :key="$store.state.nowTodoID"></now-mession-bar>
+    </transition-group>
     <div class="time_reciprocal">{{ time | timeformat }}</div>
   </div>
 </template>
 
 <script>
-import CheckBox from '../CheckBox.vue';
 import { mapState } from 'vuex';
+import NowMessionBar from './NowMessionBar';
 export default {
-  data() {
-    return {
-      circleProcess2: null
-    };
-  },
-  watch: {
-    dashValue(value) {
-      console.log(value);
-      this.circleProcess2.setAttribute('stroke-dashoffset', value);
-    }
-  },
-  mounted() {
-    this.circleProcess2 = this.$refs['circleProcess2'];
+  components: {
+    NowMessionBar
   },
   computed: {
-    ...mapState(['isStart', 'modeTime', 'playMode', 'playingTime', 'nowTodoID', 'todos', 'dashValue']),
-    nowMession() {
-      return this.todos.filter(todo => todo.id === this.nowTodoID)[0];
-    },
+    ...mapState(['isStart', 'modeTime', 'playMode', 'playingTime']),
     time() {
       if (!this.isStart) return this.modeTime[this.playMode];
       else return this.playingTime;
     }
-  },
-  components: {
-    CheckBox
   }
 };
 </script>
@@ -55,46 +27,15 @@ export default {
 <style lang="scss" scoped>
 .time_panel {
   width: 100%;
-  .now_mession_title {
-    display: flex;
-    .now_mession {
-      .title {
-        font-size: 1.5rem;
-        font-weight: bold;
-        text-transform:uppercase;
-      }
-      .dots {
-        display: flex;
-        margin-top: 0.5rem;
-      }
-      .dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background-color: $primary-color;
-        margin-right: 10px;
-        &.active {
-          border: 1px solid $text-color;
-          background-color: white;
-          overflow: hidden;
-        }
-      }
-      svg#pie {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) rotate(-90deg);
-        width: 12px;
-        height: 12px;
-        stroke-dasharray: 360%;
-        stroke-dashoffset: 360%;
-        background-color: #fff !important;
-        fill: 'white';
-        circle {
-          transition: .4s;
-        }
-      }
-    }
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  .mession-block {
+    display: block;
+    max-height: 48px;
+    min-height: 48px;
+    height: 48px;
+    overflow: hidden;
   }
   .time_reciprocal {
     font-size: 11rem;

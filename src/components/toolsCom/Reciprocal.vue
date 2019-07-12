@@ -10,7 +10,10 @@
     </div>
     <div class="mession">
       <div class="time-block">{{ time | timeformat }}</div>
-      <div class="title">the First thing to do today</div>
+      <transition-group name="bounce" class="bounce-block">
+        <div class="title" :key="nowMession.id">
+          {{ playMode === 'work' ? nowMession.title : 'take a break' }}</div>
+      </transition-group>
     </div>
   </div>
 </template>
@@ -32,10 +35,13 @@ export default {
     if (this.timer) window.clearInterval(this.timer);
   },
   computed: {
-    ...mapState(['playing', 'playMode', 'playingTime', 'modeTime', 'isStart']),
+    ...mapState(['playing', 'playMode', 'playingTime', 'modeTime', 'isStart', 'todos', 'nowTodoID']),
     time() {
       if (!this.isStart) return this.modeTime[this.playMode];
       else return this.playingTime;
+    },
+    nowMession() {
+      return this.todos.filter(todo => todo.id === this.nowTodoID)[0];
     }
   },
   methods: {

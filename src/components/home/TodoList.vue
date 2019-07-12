@@ -1,10 +1,12 @@
 <template>
   <div class="todo_list" :class="playMode">
-    <div class="todo-item" v-for="item in todosDoing" :key="item.id">
-      <check-box width="24" height="24" size="16" :id="item.id" :value="item.isCompleted" @toggleValue='toggleItemCompleted'></check-box>
-      <div class="title">{{ item.title }}</div>
-      <play-btn :home="true"></play-btn>
-    </div>
+    <transition-group name="slide" class="todo-block">
+      <div class="todo-item" v-for="item in todosDoing" :key="item.id">
+        <check-box width="24" height="24" size="16" :id="item.id" :value="item.isCompleted" @toggleValue='toggleItemCompleted'></check-box>
+        <div class="title">{{ item.title }}</div>
+        <play-btn :home="true" :id="item.id"></play-btn>
+      </div>
+    </transition-group>
     <div class="more"><span @click="redirect">MORE</span></div>
   </div>
 </template>
@@ -39,6 +41,11 @@ export default {
 <style lang="scss" scoped>
 .todo_list {
   width: 100%;
+  .todo-block {
+    display: block;
+    max-height: 112px;
+    overflow: hidden;
+  }
   .todo-item {
     width: 100%;
     height: 2rem;
@@ -66,6 +73,7 @@ export default {
     font-size: 1rem;
     font-weight: bold;
     text-align: right;
+    margin-top: 8px;
     span {
       cursor: pointer;
     }

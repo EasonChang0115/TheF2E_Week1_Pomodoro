@@ -1,12 +1,12 @@
 <template>
   <div class="play-btn" :class="home ? 'home' : playMode">
-    <i class="material-icons">play_circle_outline</i>
+    <i class="material-icons" @click="$store.commit('onChangeNowMession', { id })">play_circle_outline</i>
   </div>
 </template>
 
 <script>
   export default {
-    props: ['home'],
+    props: ['home', 'id'],
     computed: {
       playMode() {
         return this.$store.state.playMode;

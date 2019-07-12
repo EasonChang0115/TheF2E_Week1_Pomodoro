@@ -10,8 +10,11 @@
           <check-box width="24" height="24" size="16" color="white" :id="item.id" :value="item.isCompleted"
             @toggleValue='toggleItemCompleted'>
           </check-box>
-          <div class="item-title" :class="item.isCompleted ? 'line' : ''" @dblclick="dbClickItem(item.id, item.title)">{{ item.title }}</div>
-          <play-btn v-if="item.isCompleted === false"></play-btn>
+          <div class="item-title" :class="item.isCompleted ? 'line' : ''" @dblclick="dbClickItem(item.id, item.title)">
+            <span v-if="item.id === $store.state.nowTodoID && $store.state.playMode === 'work'"></span>
+            {{ item.title }}
+          </div>
+          <play-btn v-if="item.isCompleted === false" :id="item.id"></play-btn>
           <div class="dots" v-else>
             <div class="dot" v-for="(dot, index) in item.doTimes" :key="index"></div>
           </div>
@@ -130,6 +133,15 @@ export default {
       color: white;
       text-align: left;
       transition: .3s;
+      span {
+        width: 12px;
+        height: 12px;
+        display: inline-block;
+        border-radius: 50%;
+        background-color: $text-color;
+        margin-right: 8px;
+        text-transform: initial;
+      }
       &:hover {
         color: $text-color;
       }

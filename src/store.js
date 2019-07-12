@@ -96,6 +96,9 @@ export default new Vuex.Store({
       state.todos.forEach(todo => {
         if (todo.id === id) todo.title = text;
       });
+    },
+    onChangeNowMession(state, { id }) {
+      state.nowTodoID = id;
     }
   },
   actions: {
