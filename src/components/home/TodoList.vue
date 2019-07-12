@@ -19,9 +19,10 @@ export default {
     PlayBtn
   },
   computed: {
-    ...mapState(['playing', 'playMode', 'todos']),
+    ...mapState(['playing', 'playMode', 'todos', 'nowTodoID']),
     todosDoing() {
-      return this.todos.filter(todo => todo.isCompleted === false).sort((a, b) => new Date(b.id) - new Date(a.id)).slice(0, 5);
+      return this.todos.filter(todo => todo.isCompleted === false && todo.id !== this.nowTodoID)
+                       .sort((a, b) => new Date(b.id) - new Date(a.id)).slice(0, 5);
     }
   },
   methods: {

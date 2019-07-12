@@ -10,19 +10,19 @@ export default new Vuex.Store({
     playing: false,
     playingTime: 0,
     modeTime: {
-      work: 1500,
+      work: 10,
       break: 300
     },
     todos: [{
       id: 1562918030517,
       title: 'the First thing to do today',
       isCompleted: false,
-      doTimes: 0,
+      doTimes: 3,
       remark: ''
     }, {
       id: 1562918049596,
       title: 'the second thing to do today',
-      isCompleted: true,
+      isCompleted: false,
       doTimes: 5,
       remark: ''
     }, {
@@ -44,9 +44,25 @@ export default new Vuex.Store({
       doTimes: 4,
       remark: ''
     }],
-    nowTodoID: 0
+    nowTodoID: 1562918030517,
+    dashValue: ''
   },
   mutations: {
+    addTimesInMession(state) {
+      if (state.playMode === 'work') {
+        state.todos.forEach(todo => {
+          if (todo.id === state.nowTodoID) todo.doTimes += 1;
+          state.dashValue = '0%';
+        });
+      }
+    },
+    onChangeDashValue(state, { value }) {
+      state.dashValue = value;
+    },
+    switchPlayMode(state) {
+      if (state.playing === true) return;
+      state.playMode = state.playMode === 'break' ? 'work' : 'break';
+    },
     togglePlaying(state, { value }) {
       state.playing = value;
     },

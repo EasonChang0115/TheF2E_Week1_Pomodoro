@@ -59,9 +59,10 @@ export default {
         this.$store.commit('countDownPlayingTime');
         let percent = this.playingTime / this.modeTime[this.playMode] * 360 + '%';
         this.circleProcess.setAttribute('stroke-dashoffset', percent);
+        this.$store.commit('onChangeDashValue', { value: percent });
         if (this.playingTime <= 0) {
-          window.clearInterval(this.timer);
-          this.$store.commit('toggleStarted', { value: false });
+          this.$store.commit('addTimesInMession');
+          this.resetPlaying();
         }
       }, 1000);
     }

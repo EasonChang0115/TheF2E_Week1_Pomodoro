@@ -11,6 +11,9 @@
         <router-link to="/tools/ringtones" class="menu_link">
           <i class="material-icons">library_music</i>
         </router-link>
+        <div class="menu_link">
+          <i class="material-icons mode" :class="$store.state.playMode" @click="$store.commit('switchPlayMode')">free_breakfast</i>
+        </div>
       </div>
       <div class="menu-title">POMODORO</div>
     </div>
@@ -52,6 +55,23 @@ export default {
       width: 36px;
       height: 36px;
       color: $second-color;
+      cursor: pointer;
+      transition: .3s;
+      &:hover {
+        transform: scale(1.1);
+      }
+      &.mode.break {
+        color: $second-text-color;
+        &:hover {
+          color: $text-color;
+        }
+      }
+      &.mode.work {
+        color: $text-color;
+        &:hover {
+          color: $second-text-color;
+        }
+      }
     }
   }
   .menu-title {
