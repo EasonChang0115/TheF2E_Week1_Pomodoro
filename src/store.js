@@ -14,31 +14,31 @@ export default new Vuex.Store({
       break: 300
     },
     todos: [{
-      id: 1,
+      id: 1562918030517,
       title: 'the First thing to do today',
       isCompleted: false,
       doTimes: 0,
       remark: ''
     }, {
-      id: 2,
+      id: 1562918049596,
       title: 'the second thing to do today',
       isCompleted: true,
       doTimes: 5,
       remark: ''
     }, {
-      id: 3,
+      id: 1562918051424,
       title: 'the third thing to do today',
       isCompleted: false,
       doTimes: 3,
       remark: ''
     }, {
-      id: 4,
+      id: 1562918068435,
       title: 'the forth thing to do today',
       isCompleted: true,
       doTimes: 4,
       remark: ''
     }, {
-      id: 5,
+      id: 1562918077667,
       title: 'the five thing to do today',
       isCompleted: false,
       doTimes: 4,

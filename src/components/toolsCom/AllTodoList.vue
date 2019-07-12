@@ -11,9 +11,7 @@
             @toggleValue='toggleItemCompleted'>
           </check-box>
           <div class="item-title" :class="item.isCompleted ? 'line' : ''" @dblclick="dbClickItem(item.id, item.title)">{{ item.title }}</div>
-          <div class="play-btn" v-if="item.isCompleted === false">
-            <i class="material-icons">play_circle_outline</i>
-          </div>
+          <play-btn v-if="item.isCompleted === false"></play-btn>
           <div class="dots" v-else>
             <div class="dot" v-for="(dot, index) in item.doTimes" :key="index"></div>
           </div>
@@ -26,6 +24,7 @@
 <script>
 import Swal from 'sweetalert2';
 import CheckBox from '@/components/CheckBox.vue';
+import PlayBtn from '@/components/Playbtn.vue';
 export default {
   props: ['todos', 'title'],
   computed: {
@@ -39,7 +38,8 @@ export default {
     };
   },
   components: {
-    CheckBox
+    CheckBox,
+    PlayBtn
   },
   methods: {
     toggleLsit() {
@@ -72,7 +72,7 @@ export default {
         if (result.value) {
           this.$store.commit('editTodoItemById', { id, text: result.value });
         }
-      })
+      });
     }
   }
 };
@@ -137,16 +137,6 @@ export default {
         text-decoration: line-through;
       }
     }
-    .play-btn {
-      i {
-        color: white;
-        cursor: pointer;
-        transition: .3s;
-        &:hover {
-          color: $text-color;
-        }
-      }
-    }
     .dots {
       display: flex;
       .dot {
@@ -163,9 +153,6 @@ export default {
     }
   }
   &.break {
-    .todo-list .todo-item .play-btn i:hover {
-      color: $second-text-color;
-    }
     .todo-list .todo-item .item-title:hover {
       color: $second-text-color;
     }

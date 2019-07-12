@@ -1,11 +1,9 @@
 <template>
   <div class="todo_list" :class="playMode">
-    <div class="todo-item" v-for="(item, index) in todoList" :key="index">
-      <check-box width="24" height="24" size="16" :id="item.id"></check-box>
+    <div class="todo-item" v-for="item in todosDoing" :key="item.id">
+      <check-box width="24" height="24" size="16" :id="item.id" :value="item.isCompleted" @toggleValue='toggleItemCompleted'></check-box>
       <div class="title">{{ item.title }}</div>
-      <div class="play-btn">
-        <i class="material-icons">play_circle_outline</i>
-      </div>
+      <play-btn :home="true"></play-btn>
     </div>
     <div class="more"><span @click="redirect">MORE</span></div>
   </div>
@@ -13,33 +11,25 @@
 
 <script>
 import CheckBox from '../CheckBox.vue';
+import PlayBtn from '../Playbtn.vue';
 import { mapState } from 'vuex';
 export default {
-  data() {
-    return {
-      todoList: [
-        {
-          id: 1,
-          title: 'the second thing to do today'
-        }, {
-          id: 2,
-          title: 'the third thing to do today'
-        }, {
-          id: 3,
-          title: 'the forth thing to do today'
-        }
-      ]
-    };
-  },
   components: {
-    CheckBox
+    CheckBox,
+    PlayBtn
   },
   computed: {
-    ...mapState(['playing', 'playMode'])
+    ...mapState(['playing', 'playMode', 'todos']),
+    todosDoing() {
+      return this.todos.filter(todo => todo.isCompleted === false).sort((a, b) => new Date(b.id) - new Date(a.id)).slice(0, 5);
+    }
   },
   methods: {
     redirect() {
       this.$router.push({ name: 'todo' });
+    },
+    toggleItemCompleted(id) {
+      this.$store.commit('toggleItemCompleted', { id });
     }
   }
 };
