@@ -75,6 +75,11 @@ export default new Vuex.Store({
     },
     deleteTodoItemById(state, { id }) {
       state.todos = state.todos.filter(todo => todo.id !== id);
+    },
+    editTodoItemById(state, { id, text }) {
+      state.todos.forEach(todo => {
+        if (todo.id === id) todo.title = text;
+      });
     }
   },
   actions: {

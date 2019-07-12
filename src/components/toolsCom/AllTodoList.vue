@@ -10,7 +10,7 @@
           <check-box width="24" height="24" size="16" color="white" :id="item.id" :value="item.isCompleted"
             @toggleValue='toggleItemCompleted'>
           </check-box>
-          <div class="item-title" :class="item.isCompleted ? 'line' : ''" @dblclick="deleteItem(item.id)">{{ item.title }}</div>
+          <div class="item-title" :class="item.isCompleted ? 'line' : ''" @dblclick="dbClickItem(item.id, item.title)">{{ item.title }}</div>
           <div class="play-btn" v-if="item.isCompleted === false">
             <i class="material-icons">play_circle_outline</i>
           </div>
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2';
 import CheckBox from '@/components/CheckBox.vue';
 export default {
   props: ['todos', 'title'],
@@ -47,8 +48,31 @@ export default {
     toggleItemCompleted(id) {
       this.$store.commit('toggleItemCompleted', { id });
     },
-    deleteItem(id) {
-      this.$store.commit('deleteTodoItemById', { id });
+    dbClickItem(id, text) {
+      Swal.fire({
+        customClass: {
+          header: 'alert__header',
+          title: this.playMode === 'break' ? 'alert__btitle' : 'alert__mtitle',
+          input: 'alert__input',
+          popup: 'alert__popup',
+          actions: 'alert__actions',
+          cancelButton: 'alert__cancelbtn'
+        },
+        heightAuto: false,
+        title: '修改或刪除待辦任務',
+        input: 'text',
+        inputValue: text,
+        showCancelButton: true,
+        confirmButtonText: '確認',
+        cancelButtonText: '刪除'
+      }).then((result) => {
+        if (result.dismiss === 'cancel') {
+          this.$store.commit('deleteTodoItemById', { id });
+        }
+        if (result.value) {
+          this.$store.commit('editTodoItemById', { id, text: result.value });
+        }
+      })
     }
   }
 };
@@ -105,6 +129,10 @@ export default {
       text-transform: uppercase;
       color: white;
       text-align: left;
+      transition: .3s;
+      &:hover {
+        color: $text-color;
+      }
       &.line {
         text-decoration: line-through;
       }
@@ -136,6 +164,9 @@ export default {
   }
   &.break {
     .todo-list .todo-item .play-btn i:hover {
+      color: $second-text-color;
+    }
+    .todo-list .todo-item .item-title:hover {
       color: $second-text-color;
     }
   }
