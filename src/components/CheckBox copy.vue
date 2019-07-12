@@ -1,6 +1,6 @@
 <template>
   <div class="check-box">
-    <input type="checkbox" name="" :id="'checkbox' + id" :checked="value" @change="toggleValue(id)"/>
+    <input type="checkbox" name="" :id="'checkbox' + id" :checked="value" @change="toggleValue"/>
     <label class="checkbox_label" :for="'checkbox' + id"
       :style="{
         width: width + 'px',
@@ -35,9 +35,7 @@
       }
     },
     methods: {
-      toggleValue(id) {
-        this.$emit('toggleValue', id);
-      }
+      
     }
   };
 </script>

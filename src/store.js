@@ -15,9 +15,36 @@ export default new Vuex.Store({
     },
     todos: [{
       id: 1,
-      title: ''
+      title: 'the First thing to do today',
+      isCompleted: false,
+      doTimes: 0,
+      remark: ''
+    }, {
+      id: 2,
+      title: 'the second thing to do today',
+      isCompleted: true,
+      doTimes: 5,
+      remark: ''
+    }, {
+      id: 3,
+      title: 'the third thing to do today',
+      isCompleted: false,
+      doTimes: 3,
+      remark: ''
+    }, {
+      id: 4,
+      title: 'the forth thing to do today',
+      isCompleted: true,
+      doTimes: 4,
+      remark: ''
+    }, {
+      id: 5,
+      title: 'the five thing to do today',
+      isCompleted: false,
+      doTimes: 4,
+      remark: ''
     }],
-    newTodoID: 0
+    nowTodoID: 0
   },
   mutations: {
     togglePlaying(state, { value }) {
@@ -31,6 +58,23 @@ export default new Vuex.Store({
     },
     countDownPlayingTime(state) {
       state.playingTime = state.playingTime - 1;
+    },
+    addTodoItem(state, { title }) {
+      state.todos.push({
+        id: new Date().valueOf(),
+        title: title,
+        isCompleted: false,
+        doTimes: 0,
+        remark: ''
+      });
+    },
+    toggleItemCompleted(state, { id }) {
+      state.todos.forEach(todo => {
+        if (todo.id === id) todo.isCompleted = !todo.isCompleted;
+      });
+    },
+    deleteTodoItemById(state, { id }) {
+      state.todos = state.todos.filter(todo => todo.id !== id);
     }
   },
   actions: {
