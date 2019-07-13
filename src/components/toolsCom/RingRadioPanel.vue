@@ -5,9 +5,13 @@
     </div>
     <div class="radio-items">
       <div class="item" v-for="(item, index) in ringOptions" :key="index">
-        <input type="radio" :id="`${title}_${item.value}`" :name="title + 'rung'" :checked="item.value === value">
+        <input type="radio" :id="`${title}_${item.value}`"
+               :name="title + 'rung'" :checked="item.value === value"
+               :value="item.value"
+               @change="playSound">
         <label :for="`${title}_${item.value}`" class="fake-radio"></label>
         <label :for="`${title}_${item.value}`">{{ item.value }}</label>
+        <i class="material-icons" v-if="audio && soundValue === item.value" @click="pauseSound">pause</i>
       </div>
     </div>
   </div>
@@ -15,7 +19,31 @@
 
 <script>
 export default {
-  props: ['title', 'ringOptions', 'value']
+  props: ['title', 'ringOptions', 'value'],
+  data() {
+    return {
+      soundValue: null,
+      audio: null
+    }
+  },
+  methods: {
+    playSound(e) {
+      this.soundValue = e.target.value;
+      if (this.soundValue !== 'none') {
+        if (this.audio) this.audio.pause();
+        this.audio = new Audio(`/audio/alert/${this.soundValue}.mp3`);
+        this.audio.play();
+      } else {
+        if (this.audio) this.audio.pause();
+        this.audio = null;
+      }
+      this.$emit('input', {value: this.soundValue});
+    },
+    pauseSound() {
+      if (this.audio) this.audio.pause();
+      this.audio = null;
+    }
+  }
 }
 </script>
 
@@ -100,6 +128,16 @@ export default {
           transition: .3s;
           opacity: 0;
           cursor: pointer;
+        }
+      }
+      i {
+        font-size: 1rem;
+        color: $text-color;
+        cursor: pointer;
+        margin-left: 0.5rem;
+        transition: .3s;
+        &:hover {
+          transform: scale(1.2);
         }
       }
     }

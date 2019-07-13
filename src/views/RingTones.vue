@@ -1,8 +1,18 @@
 <template>
   <div class="p__ring_tones">
     <div class="ring_tones_panel">
-      <ring-radio-panel title="WORK" :ringOptions="workOptions" :value="workSelectedRing"></ring-radio-panel>
-      <ring-radio-panel title="BREAK" :ringOptions="breakOptions" :value="breakSelectedRing">></ring-radio-panel>
+      <ring-radio-panel
+        v-model="workRing"
+        title="WORK"
+        :ringOptions="workOptions"
+        :value="workRing"
+      ></ring-radio-panel>
+      <ring-radio-panel
+        v-model="breakRing"
+        title="BREAK" 
+        :ringOptions="breakOptions" 
+        :value="breakRing">
+      </ring-radio-panel>
     </div>
   </div>
 </template>
@@ -15,13 +25,31 @@ export default {
       workOptions: [{ value: 'none' }, { value: 'default' }, { value: 'alarm' }, { value: 'alert' }, 
         { value: 'beep' }, { value: 'bell' }, { value: 'bird' }, { value: 'bugle' }, { value: 'digital' }, 
         { value: 'drop' }, { value: 'horn' }, { value: 'music' }, { value: 'ring' }, { value: 'warning' }, 
-        { value: 'whistle' }],
+        { value: 'whistle' }
+      ],
       breakOptions: [{ value: 'none' }, { value: 'default' }, { value: 'alarm' }, { value: 'alert' }, 
         { value: 'beep' }, { value: 'bell' }, { value: 'bird' }, { value: 'bugle' }, { value: 'digital' }, 
         { value: 'drop' }, { value: 'horn' }, { value: 'music' }, { value: 'ring' }, { value: 'warning' }, 
-        { value: 'whistle' }],
-      workSelectedRing: 'default',
-      breakSelectedRing: 'alert'
+        { value: 'whistle' }
+      ]
+    }
+  },
+  computed: {
+    breakRing: {
+      get() {
+        return this.$store.state.ring.break;
+      },
+      set(value) {
+        this.$store.commit('onChangeBreakRing', { value });
+      }
+    },
+    workRing: {
+      get() {
+        return this.$store.state.ring.work;
+      },
+      set(value) {
+        this.$store.commit('onChangeWorkRing', { value });
+      }
     }
   },
   components: {

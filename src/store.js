@@ -45,9 +45,19 @@ export default new Vuex.Store({
       remark: ''
     }],
     nowTodoID: 1562918030517,
-    dashValue: ''
+    dashValue: '',
+    ring: {
+      work: 'default',
+      break: 'alert'
+    }
   },
   mutations: {
+    onChangeWorkRing(state, { value }) {
+      state.ring.work = value;
+    },
+    onChangeBreakRing(state, { value }) {
+      state.ring.break = value;
+    },
     addTimesInMession(state) {
       if (state.playMode === 'work') {
         state.todos.forEach(todo => {
