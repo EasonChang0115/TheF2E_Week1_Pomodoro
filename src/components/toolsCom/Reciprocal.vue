@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2';
 import { mapState } from 'vuex';
 export default {
   data() {
@@ -35,7 +36,7 @@ export default {
     if (this.timer) window.clearInterval(this.timer);
   },
   computed: {
-    ...mapState(['playing', 'playMode', 'playingTime', 'modeTime', 'isStart', 'todos', 'nowTodoID']),
+    ...mapState(['ring', 'playing', 'playMode', 'playingTime', 'modeTime', 'isStart', 'todos', 'nowTodoID']),
     time() {
       if (!this.isStart) return this.modeTime[this.playMode];
       else return this.playingTime;
@@ -61,10 +62,36 @@ export default {
       this.timer = setInterval(() => {
         this.$store.commit('countDownPlayingTime');
         if (this.playingTime <= 0) {
-          window.clearInterval(this.timer);
-          this.$store.commit('toggleStarted', { value: false });
+          this.$store.commit('addTimesInMession');
+          this.resetPlaying();
+          this.ringAndAlert();
         }
       }, 1000);
+    },
+    resetPlaying() {
+      window.clearInterval(this.timer);
+      this.$store.commit('toggleStarted', { value: false });
+      this.$store.commit('togglePlaying', { value: false });
+      this.$store.commit('setPlayingTime', { value: 0 });
+    },
+    ringAndAlert() {
+      let audio = null;
+      if (this.ring[this.playMode] !== 'none') {
+        audio = new Audio(`/audio/alert/${this.ring[this.playMode]}.mp3`);
+        audio.play();
+      }
+      Swal.fire({
+        heightAuto: false,
+        title: `${this.playMode === 'break' ? '休息' : '工作'}時間到囉`,
+        type: 'success',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '確定'
+      }).then((result) => {
+        if (result.value) {
+          if (audio) audio.pause();
+        }
+      })
     }
   }
 };

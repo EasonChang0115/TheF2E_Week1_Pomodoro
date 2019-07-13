@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2';
 import { mapState } from 'vuex';
 export default {
   data() {
@@ -23,7 +24,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(['playing', 'playMode', 'playingTime', 'modeTime', 'isStart'])
+    ...mapState(['playing', 'playMode', 'playingTime', 'modeTime', 'isStart', 'ring'])
   },
   mounted() {
     this.circleProcess = this.$refs['circleProcess'];
@@ -63,8 +64,28 @@ export default {
         if (this.playingTime <= 0) {
           this.$store.commit('addTimesInMession');
           this.resetPlaying();
+          this.ringAndAlert();
         }
       }, 1000);
+    },
+    ringAndAlert() {
+      let audio = null;
+      if (this.ring[this.playMode] !== 'none') {
+        audio = new Audio(`/audio/alert/${this.ring[this.playMode]}.mp3`);
+        audio.play();
+      }
+      Swal.fire({
+        heightAuto: false,
+        title: `${this.playMode === 'break' ? '休息' : '工作'}時間到囉`,
+        type: 'success',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '確定'
+      }).then((result) => {
+        if (result.value) {
+          if (audio) audio.pause();
+        }
+      })
     }
   }
 };
