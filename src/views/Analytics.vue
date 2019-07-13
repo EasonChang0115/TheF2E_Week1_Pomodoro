@@ -2,19 +2,19 @@
   <div class="p__analytics">
     <div class="analytics_panel">
       <focus-time></focus-time>
-      <chart></chart>
+      <chart-panel></chart-panel>
     </div>
   </div>
 </template>
 
 <script>
 import FocusTime from '@/components/toolsCom/FocusTime.vue';
-import Chart from '@/components/toolsCom/Chart.vue';
+import ChartPanel from '@/components/toolsCom/ChartPanel.vue';
 
 export default {
   components: {
     FocusTime,
-    Chart
+    ChartPanel
   }
 };
 </script>
