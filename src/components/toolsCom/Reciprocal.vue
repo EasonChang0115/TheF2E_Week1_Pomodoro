@@ -97,7 +97,7 @@ export default {
         if (result.value) {
           if (audio) audio.pause();
         }
-      })
+      });
     }
   }
 };

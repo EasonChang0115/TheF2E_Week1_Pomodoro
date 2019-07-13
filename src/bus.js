@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue from 'vue';
 
 // 使用一個空的 Vue 實例作為事件中心
 var bus = new Vue();

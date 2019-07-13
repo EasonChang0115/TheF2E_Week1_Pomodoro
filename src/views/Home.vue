@@ -11,6 +11,7 @@ import RightMenuPanel from '@/components/home/RightMenuPanel.vue';
 
 export default {
   mounted() {
+    console.log(process.env.BASE_URL);
     document.body.style.background = 'linear-gradient(90deg, rgba(255,237,247,1) 29%, rgba(0,49,100,1) 73%)';
   },
   destroyed() {

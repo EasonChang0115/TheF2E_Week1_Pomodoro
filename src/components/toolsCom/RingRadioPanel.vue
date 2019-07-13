@@ -24,7 +24,7 @@ export default {
     return {
       soundValue: null,
       audio: null
-    }
+    };
   },
   destroyed() {
     if (this.audio) this.audio.pause();
@@ -40,14 +40,14 @@ export default {
         if (this.audio) this.audio.pause();
         this.audio = null;
       }
-      this.$emit('input', {value: this.soundValue});
+      this.$emit('input', { value: this.soundValue });
     },
     pauseSound() {
       if (this.audio) this.audio.pause();
       this.audio = null;
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

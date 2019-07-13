@@ -21,7 +21,7 @@ Vue.filter('timeformat', function(time) {
 });
 
 new Vue({
-  data: () =>({ bus: bus }),
+  data: () => ({ bus: bus }),
   router,
   store,
   render: h => h(App)

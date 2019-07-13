@@ -6,7 +6,7 @@
 
 <script>
 import Swal from 'sweetalert2';
-import { mapState } from 'vuex'; 
+import { mapState } from 'vuex';
 export default {
   props: ['home', 'id'],
   computed: {
@@ -33,7 +33,7 @@ export default {
             this.$store.commit('onChangeNowMession', { id: this.id });
             this.$bus.$emit('onTimeStop');
           }
-        })
+        });
       } else {
         this.$store.commit('onChangeNowMession', { id: this.id });
       }

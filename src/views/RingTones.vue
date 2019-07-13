@@ -9,8 +9,8 @@
       ></ring-radio-panel>
       <ring-radio-panel
         v-model="breakRing"
-        title="BREAK" 
-        :ringOptions="breakOptions" 
+        title="BREAK"
+        :ringOptions="breakOptions"
         :value="breakRing">
       </ring-radio-panel>
     </div>
@@ -22,17 +22,17 @@ import RingRadioPanel from '@/components/toolsCom/RingRadioPanel.vue';
 export default {
   data() {
     return {
-      workOptions: [{ value: 'none' }, { value: 'default' }, { value: 'alarm' }, { value: 'alert' }, 
-        { value: 'beep' }, { value: 'bell' }, { value: 'bird' }, { value: 'bugle' }, { value: 'digital' }, 
-        { value: 'drop' }, { value: 'horn' }, { value: 'music' }, { value: 'ring' }, { value: 'warning' }, 
+      workOptions: [{ value: 'none' }, { value: 'default' }, { value: 'alarm' }, { value: 'alert' },
+        { value: 'beep' }, { value: 'bell' }, { value: 'bird' }, { value: 'bugle' }, { value: 'digital' },
+        { value: 'drop' }, { value: 'horn' }, { value: 'music' }, { value: 'ring' }, { value: 'warning' },
         { value: 'whistle' }
       ],
-      breakOptions: [{ value: 'none' }, { value: 'default' }, { value: 'alarm' }, { value: 'alert' }, 
-        { value: 'beep' }, { value: 'bell' }, { value: 'bird' }, { value: 'bugle' }, { value: 'digital' }, 
-        { value: 'drop' }, { value: 'horn' }, { value: 'music' }, { value: 'ring' }, { value: 'warning' }, 
+      breakOptions: [{ value: 'none' }, { value: 'default' }, { value: 'alarm' }, { value: 'alert' },
+        { value: 'beep' }, { value: 'bell' }, { value: 'bird' }, { value: 'bugle' }, { value: 'digital' },
+        { value: 'drop' }, { value: 'horn' }, { value: 'music' }, { value: 'ring' }, { value: 'warning' },
         { value: 'whistle' }
       ]
-    }
+    };
   },
   computed: {
     breakRing: {

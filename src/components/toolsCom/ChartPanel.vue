@@ -27,11 +27,11 @@ export default {
             data: ['16', '12', '16', '8', '12', '4', '20', '24'], // 位於 y 軸對應的各筆數據 value
             backgroundColor: [
               'white', 'white', 'white', 'white', 'white', 'white', '#FF4384'
-            ],
+            ]
           }
         ]
       }
-    }
+    };
   },
   components: {
     BarChart
