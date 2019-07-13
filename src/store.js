@@ -5,12 +5,12 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    playMode: 'break', // work 工作, break 休息
+    playMode: 'work', // work 工作, break 休息
     isStart: false,
     playing: false,
     playingTime: 0,
     modeTime: {
-      work: 10,
+      work: 1500,
       break: 300
     },
     todos: [{
@@ -71,6 +71,7 @@ export default new Vuex.Store({
     },
     switchPlayMode(state) {
       if (state.playing === true) return;
+      if (state.isStart === true) return;
       state.playMode = state.playMode === 'break' ? 'work' : 'break';
     },
     setPlayMode(state, { value }) {
