@@ -38,6 +38,7 @@ export default {
   .todo-panel {
     width: 100%;
     max-width: 445px;
+    overflow: hidden;
   }
 }
 </style>
