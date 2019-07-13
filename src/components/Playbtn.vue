@@ -10,11 +10,11 @@ import { mapState } from 'vuex';
 export default {
   props: ['home', 'id'],
   computed: {
-    ...mapState(['playing', 'playMode'])
+    ...mapState(['isStart', 'playMode'])
   },
   methods: {
     onChangeNowMession() {
-      if (this.playing === true) {
+      if (this.isStart === true) {
         Swal.fire({
           heightAuto: false,
           title: `正在 ${this.playMode === 'break' ? '休息' : '工作'}中`,
