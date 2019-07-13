@@ -1,7 +1,7 @@
 <template>
   <div class="p__tools">
     <menu-recipt></menu-recipt>
-    <vue-page-transition id="tools_panel" name="fade">
+    <vue-page-transition id="tools_panel" name="slideInDown">
       <router-view></router-view>
     </vue-page-transition>
     <close-bar></close-bar>
