@@ -2,6 +2,11 @@
 <div class="chart_panel">
   <div class="title-bar">
     <div class="title">CHART</div>
+    <div class="time-interval">
+      <i class="material-icons">keyboard_arrow_left</i>
+      <div class="interval">2019.7.1 - 2019.7.7</div>
+      <i class="material-icons">keyboard_arrow_right</i>
+    </div>
   </div>
   <div class="chart-block">
     <bar-chart :height="250" :chartData="chartData"></bar-chart>
@@ -36,7 +41,9 @@ export default {
 
 <style lang="scss" scoped>
 .chart_panel {
+  width: 100%;
   .title-bar {
+    width: 100%;
     background-color: $title-bar-color;
     display: flex;
     justify-content: space-between;
@@ -44,17 +51,33 @@ export default {
     padding: 0.5rem 1rem;
     margin-bottom: 1rem;
     .title {
+      width: 50%;
       color: white;
       font-size: 1.5rem;
       font-weight: bold;
     }
-    i {
-      cursor: pointer;
-      font-size: 1.5rem;
-      color: white;
-      transition: .3s;
-      &.closed {
-        transform: rotate(-180deg);
+    .time-interval {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      .interval {
+        display: flex;
+        color: white;
+        font-size: 1rem;
+        font-weight: bold;
+      }
+      i {
+        margin: 0 0.5rem;
+        text-align: center;
+        font-size: 1.5rem;
+        color: white;
+        cursor: pointer;
+        transition: .3s;
+        &:hover {
+          color: $text-color;
+        }
       }
     }
   }

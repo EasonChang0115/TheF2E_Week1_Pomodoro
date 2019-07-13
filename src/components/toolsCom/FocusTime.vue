@@ -67,7 +67,6 @@ export default {
     width: 100%;
     margin: 1rem 0 3rem;
     .times_block {
-      width: 50%;
       display: flex;
       flex-direction: column;
     }
