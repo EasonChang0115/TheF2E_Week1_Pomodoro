@@ -1,6 +1,6 @@
 <template>
   <div class="now_mession_title">
-    <check-box></check-box>
+    <check-box :id="nowTodoID" :value="nowMession.isCompleted" @toggleValue='toggleItemCompleted'></check-box>
     <div class="now_mession">
       <div class="title">{{ nowMession.title }}</div>
       <div class="dots">
@@ -41,6 +41,11 @@ export default {
   },
   components: {
     CheckBox
+  },
+  methods: {
+    toggleItemCompleted(id) {
+      this.$store.commit('toggleItemCompleted', { id });
+    },
   }
 };
 </script>
