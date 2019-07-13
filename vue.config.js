@@ -1,6 +1,6 @@
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/dist/'
+    ? '/TheF2E_Week1_Pomodoro/dist/'
     : '/',
   css: {
     loaderOptions: {
