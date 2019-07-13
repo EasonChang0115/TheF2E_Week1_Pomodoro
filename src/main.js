@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import bus from './bus';
 import './registerServiceWorker';
 import VuePageTransition from 'vue-page-transition';
 
@@ -20,6 +21,7 @@ Vue.filter('timeformat', function(time) {
 });
 
 new Vue({
+  data: () =>({ bus: bus }),
   router,
   store,
   render: h => h(App)

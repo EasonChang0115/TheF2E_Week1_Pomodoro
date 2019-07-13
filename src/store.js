@@ -73,6 +73,9 @@ export default new Vuex.Store({
       if (state.playing === true) return;
       state.playMode = state.playMode === 'break' ? 'work' : 'break';
     },
+    setPlayMode(state, { value }) {
+      state.playMode = value;
+    },
     togglePlaying(state, { value }) {
       state.playing = value;
     },

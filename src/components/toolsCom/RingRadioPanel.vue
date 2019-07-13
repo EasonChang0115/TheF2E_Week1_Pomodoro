@@ -26,6 +26,9 @@ export default {
       audio: null
     }
   },
+  destroyed() {
+    if (this.audio) this.audio.pause();
+  },
   methods: {
     playSound(e) {
       this.soundValue = e.target.value;

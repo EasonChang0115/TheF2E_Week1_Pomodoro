@@ -32,8 +32,14 @@ export default {
       this.timmerRecip();
     }
   },
+  created() {
+    this.$bus.$on('onTimeStop', event => {
+      window.clearInterval(this.timer);
+    });
+  },
   destroyed() {
     if (this.timer) window.clearInterval(this.timer);
+    this.$bus.$off('onTimeStop');
   },
   computed: {
     ...mapState(['ring', 'playing', 'playMode', 'playingTime', 'modeTime', 'isStart', 'todos', 'nowTodoID']),

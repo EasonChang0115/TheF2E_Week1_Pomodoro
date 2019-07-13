@@ -40,7 +40,7 @@ export default {
         return this.$store.state.ring.break;
       },
       set(value) {
-        this.$store.commit('onChangeBreakRing', { value });
+        this.$store.commit('onChangeBreakRing', { value: value.value });
       }
     },
     workRing: {
@@ -48,7 +48,7 @@ export default {
         return this.$store.state.ring.work;
       },
       set(value) {
-        this.$store.commit('onChangeWorkRing', { value });
+        this.$store.commit('onChangeWorkRing', { value: value.value });
       }
     }
   },

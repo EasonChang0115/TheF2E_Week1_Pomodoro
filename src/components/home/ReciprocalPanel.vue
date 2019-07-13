@@ -32,8 +32,15 @@ export default {
       this.timmerRecip();
     }
   },
+  created() {
+    this.$bus.$on('onTimeStop', event => {
+      window.clearInterval(this.timer);
+      this.circleProcess.setAttribute('stroke-dashoffset', '360%');
+    });
+  },
   destroyed() {
     if (this.timer) window.clearInterval(this.timer);
+    this.$bus.$off('onTimeStop');
   },
   methods: {
     togglePlaying(value) {
