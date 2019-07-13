@@ -83,7 +83,7 @@ export default {
     ringAndAlert() {
       let audio = null;
       if (this.ring[this.playMode] !== 'none') {
-        audio = new Audio(`${process.env.BASE_URL}/audio/alert/${this.ring[this.playMode]}.mp3`);
+        audio = new Audio(`${process.env.BASE_URL}audio/alert/${this.ring[this.playMode]}.mp3`);
         audio.play();
       }
       Swal.fire({

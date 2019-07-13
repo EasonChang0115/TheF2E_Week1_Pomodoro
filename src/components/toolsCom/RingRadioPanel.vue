@@ -34,7 +34,7 @@ export default {
       this.soundValue = e.target.value;
       if (this.soundValue !== 'none') {
         if (this.audio) this.audio.pause();
-        this.audio = new Audio(`/audio/alert/${this.soundValue}.mp3`);
+        this.audio = new Audio(`${process.env.BASE_URL}audio/alert/${this.soundValue}.mp3`);
         this.audio.play();
       } else {
         if (this.audio) this.audio.pause();
