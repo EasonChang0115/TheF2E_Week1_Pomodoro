@@ -45,7 +45,7 @@ export default {
   methods: {
     toggleItemCompleted(id) {
       this.$store.commit('toggleItemCompleted', { id });
-    },
+    }
   }
 };
 </script>
