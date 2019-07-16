@@ -5,6 +5,7 @@
       <time-panel></time-panel>
       <todo-list></todo-list>
     </div>
+    <reciprocal-panel></reciprocal-panel>
   </div>
 </template>
 
@@ -12,11 +13,13 @@
 import TodoInput from '../TodoInput.vue';
 import TimePanel from './TimePanel.vue';
 import TodoList from './TodoList.vue';
+import ReciprocalPanel from './ReciprocalPanel.vue';
 export default {
   components: {
     TodoInput,
     TimePanel,
-    TodoList
+    TodoList,
+    ReciprocalPanel
   }
 };
 </script>
@@ -26,6 +29,9 @@ export default {
   background-color: $second-color;
   width: calc(100% - #{$menu-panel-width});
   padding-left: 85px;
+  @include pad-width {
+    width: calc(100% - #{px-to-vw($menu-panel-width, $pc-media)});
+  }
   .todo_panel {
     width: 445px;
     height: 100%;
@@ -34,6 +40,9 @@ export default {
     align-items: center;
     justify-content: space-between;
     padding: 48px 0;
+    @include pad-width {
+      width: px-to-vw(445px, $pc-media);
+    }
   }
 }
 </style>

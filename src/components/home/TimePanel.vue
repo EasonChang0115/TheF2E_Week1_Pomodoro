@@ -41,6 +41,9 @@ export default {
     font-size: 11rem;
     font-weight: bold;
     color: $text-color;
+    @include pad-width {
+      font-size: px-to-vw(rem-to-px(11rem), $pc-media);
+    }
   }
   &.break .time_reciprocal{
     color: $second-text-color;

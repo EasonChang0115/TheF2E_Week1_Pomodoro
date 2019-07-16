@@ -1,8 +1,8 @@
 <template>
-  <div class="reciprocal-panel" :class="playMode">
+  <div class="reciprocal-panel" :class="{ break: playMode === 'break' }">
     <div class="inner-circle" :class="playing ? 'playing' : ''">
       <svg id="circleSvg" xmlns="http://www.w3.org/2000/svg">
-        <circle ref="circleProcess" cx="50%" cy="50%" r="260" stroke-width="21" :stroke="playMode === 'work' ? '#FF4384' : '#00A7FF'"></circle>
+        <circle ref="circleProcess" cx="50%" cy="50%" :stroke="playMode === 'work' ? '#FF4384' : '#00A7FF'"></circle>
       </svg>
       <div class="play-btn">
         <i class="material-icons" v-if="playing === false" @click="togglePlaying(true)">play_circle_filled</i>
@@ -17,6 +17,7 @@
 import Swal from 'sweetalert2';
 import { mapState } from 'vuex';
 export default {
+  props: ['isPhone'],
   data() {
     return {
       circleProcess: null,
@@ -109,7 +110,8 @@ export default {
   align-items: center;
   position: absolute;
   top: 50%;
-  transform: translate(-50%, -50%);
+  right: 0;
+  transform: translate(50%, -50%);
   .inner-circle #circleSvg {
     position: absolute;
     top: 50%;
@@ -122,6 +124,16 @@ export default {
     fill: none;
     circle {
       transition: .4s;
+      r: 260px;
+      stroke-width: 21px;
+      @include pad-width {
+        r: px-to-vw(260px, $pc-media);
+        stroke-width: px-to-vw(21px, $pc-media);
+      }
+    }
+    @include pad-width {
+      width: px-to-vw(540px, $pc-media);
+      height: px-to-vw(540px, $pc-media);
     }
   }
   .inner-circle {
@@ -165,6 +177,10 @@ export default {
         }
       }
     }
+    @include pad-width {
+      width: px-to-vw(500px, $pc-media);
+      height: px-to-vw(500px, $pc-media);
+    }
   }
   .inner-circle.playing {
     background-color: white;
@@ -191,6 +207,10 @@ export default {
         }
       }
     }
+  }
+  @include pad-width {
+    width: px-to-vw(540px, $pc-media);
+    height: px-to-vw(540px, $pc-media);
   }
 }
 </style>
