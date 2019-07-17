@@ -43,5 +43,8 @@ export default {
     margin-top: 80px;
     margin-bottom: 40px;
   }
+  @include phone-width {
+    padding: 0 15px;
+  }
 }
 </style>
