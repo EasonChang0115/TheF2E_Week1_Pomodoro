@@ -27,7 +27,7 @@
         default: 32
       },
       color: {
-        default: '#003164'
+        default: ''
       },
       value: {
         type: Boolean,
@@ -60,7 +60,6 @@
     border: 2px solid $primary-color;
     border-radius: 50%;
     cursor: pointer;
-    background-color: #fff;
     margin-right: 1rem;
     .hook {
       position: absolute;
