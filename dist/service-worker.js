@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/TheF2E_Week1_Pomodoro/dist/precache-manifest.8809ae4ece154494259bbb242f1f9140.js"
+  "/TheF2E_Week1_Pomodoro/dist/precache-manifest.d3763b8df473a52d71335d400e31190b.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "week1pomodoro"});
