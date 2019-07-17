@@ -35,10 +35,12 @@ export default {
   justify-content: center;
   padding: 3rem 0;
   height: 100%;
+  @include spad-width {
+    height: initial;
+  }
   .todo-panel {
     width: 100%;
     max-width: 445px;
-    overflow: hidden;
     @include spad-width {
       max-width: initial;
     }

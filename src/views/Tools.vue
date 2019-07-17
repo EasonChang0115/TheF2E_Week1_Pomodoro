@@ -33,13 +33,15 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  overflow: scroll;
   #tools_panel {
     width: 100%;
     height: 100%;
-    overflow: hidden;
   }
   @include spad-width {
-    padding: 80px 45px 45px;
+    padding: 0 40px;
+    margin-top: 80px;
+    margin-bottom: 40px;
   }
 }
 </style>
