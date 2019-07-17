@@ -130,10 +130,18 @@ export default {
         r: px-to-vw(260px, $pc-media);
         stroke-width: px-to-vw(21px, $pc-media);
       }
+      @include spad-width {
+        r: px-to-vw(228px, $pad-media);
+        stroke-width: px-to-vw(21px, $pad-media);
+      }
     }
     @include pad-width {
       width: px-to-vw(540px, $pc-media);
       height: px-to-vw(540px, $pc-media);
+    }
+    @include spad-width {
+      width: px-to-vw(480px, $pad-media);
+      height: px-to-vw(480px, $pad-media);
     }
   }
   .inner-circle {
@@ -181,6 +189,10 @@ export default {
       width: px-to-vw(500px, $pc-media);
       height: px-to-vw(500px, $pc-media);
     }
+    @include spad-width {
+      width: px-to-vw(440px, $pad-media);
+      height: px-to-vw(440px, $pad-media);
+    }
   }
   .inner-circle.playing {
     background-color: white;
@@ -211,6 +223,12 @@ export default {
   @include pad-width {
     width: px-to-vw(540px, $pc-media);
     height: px-to-vw(540px, $pc-media);
+  }
+  @include spad-width {
+    top: 35%;
+    right: 50%;
+    width: px-to-vw(480px, $pad-media);
+    height: px-to-vw(480px, $pad-media);
   }
 }
 </style>

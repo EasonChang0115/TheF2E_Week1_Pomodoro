@@ -77,5 +77,8 @@ export default {
       }
     }
   }
+  @include spad-width {
+    display: none;
+  }
 }
 </style>

@@ -42,6 +42,9 @@ export default {};
     @include pad-width {
       right: px-to-vw(85px, $pc-media);
     }
+    @include spad-width {
+      display: none;
+    }
   }
   .icon_list {
     display: flex;
@@ -79,6 +82,9 @@ export default {};
     font-weight: bold;
     color: $second-color;
     writing-mode: vertical-lr
+  }
+  @include spad-width {
+    width: 0;
   }
 }
 </style>

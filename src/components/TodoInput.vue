@@ -1,5 +1,5 @@
 <template>
-  <div class="todo_input" :class="playMode">
+  <div class="todo_input" :class="{break: playMode === 'break', tools: tools, home: !tools}">
     <input type="text" placeholder="add a new mission..." v-model="text" @keyup.enter="AddTodoItem">
     <i class="material-icons" @click="AddTodoItem">add</i>
   </div>
@@ -8,6 +8,7 @@
 <script>
 import { mapState } from 'vuex';
 export default {
+  props: ['tools'],
   data() {
     return {
       text: ''
@@ -34,6 +35,11 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 0 1rem;
+  &.home {
+    @include spad-width {
+      display: none;
+    }
+  }
   input {
     outline: none;
     border: none;

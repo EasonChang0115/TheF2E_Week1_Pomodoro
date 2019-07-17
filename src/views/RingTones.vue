@@ -67,6 +67,9 @@ export default {
   .ring_tones_panel {
     width: 100%;
     max-width: 445px;
+    @include spad-width {
+      max-width: initial;
+    }
   }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="p__todoList">
     <div class="todo-panel">
-      <todo-input></todo-input>
+      <todo-input :tools="true"></todo-input>
       <all-todo-list title="TO-DO" :todos="todosDoing"></all-todo-list>
       <all-todo-list title="DONE" :todos="todosCompleted"></all-todo-list>
     </div>
@@ -39,6 +39,9 @@ export default {
     width: 100%;
     max-width: 445px;
     overflow: hidden;
+    @include spad-width {
+      max-width: initial;
+    }
   }
 }
 </style>

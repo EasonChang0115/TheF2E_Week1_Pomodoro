@@ -29,9 +29,6 @@ export default {
   background-color: $second-color;
   width: calc(100% - #{$menu-panel-width});
   padding-left: 85px;
-  @include pad-width {
-    width: calc(100% - #{px-to-vw($menu-panel-width, $pc-media)});
-  }
   .todo_panel {
     width: 445px;
     height: 100%;
@@ -42,6 +39,17 @@ export default {
     padding: 48px 0;
     @include pad-width {
       width: px-to-vw(445px, $pc-media);
+    }
+  }
+  @include pad-width {
+    width: calc(100% - #{px-to-vw($menu-panel-width, $pc-media)});
+  }
+  @include spad-width {
+    width: 100%;
+    padding: 45px;
+    .todo_panel {
+      width: 100%;
+      justify-content: flex-end;
     }
   }
 }

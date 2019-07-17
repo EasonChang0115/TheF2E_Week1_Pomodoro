@@ -44,6 +44,9 @@
 
 <style lang="scss" scoped>
 .check-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   input {
     display: none;
     &:checked {
@@ -57,6 +60,7 @@
     border: 2px solid $primary-color;
     border-radius: 50%;
     cursor: pointer;
+    background-color: #fff;
     margin-right: 1rem;
     .hook {
       position: absolute;
