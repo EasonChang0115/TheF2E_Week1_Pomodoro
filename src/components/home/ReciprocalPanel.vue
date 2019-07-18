@@ -112,6 +112,7 @@ export default {
   top: 50%;
   right: 0;
   transform: translate(50%, -50%);
+  z-index: 100;
   .inner-circle #circleSvg {
     position: absolute;
     top: 50%;
